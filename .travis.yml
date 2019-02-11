@@ -1,24 +1,22 @@
 dist: trusty
 language: java
 jdk:
-  - oraclejdk8
-
+- oraclejdk8
 install: true
-script: ./travis.sh
-
+script: "./travis.sh"
 cache:
   directories:
-  - $HOME/.m2/repository
-  - $HOME/.m2/wrapper
+  - "$HOME/.m2/repository"
+  - "$HOME/.m2/wrapper"
 before_cache:
   - rm -rf $HOME/.m2/repository/argelbargel/jenkins/plugins/gitlab-branch-source
-
 deploy:
   provider: releases
-  api_key: "$GITHUB_API_TOKEN"
   skip_cleanup: true
-  on:
-    tags: true
+  api_key:
+    secure: c1vOxribz+v+SmLje4cNxkfUkUFwkQsSU9e1Xi5E/ygBXc/jxKu7C74TP06An1vrr0H+PrsFRTDOdmi3k/sNIOMN+vIqsKczlCR+RvfvLQSGfcnpa+nAyZzkPCcMJz9CnrZ8KjIAnDuag0utk9aLDhdLxnZTVMnKNpI349eD35ZG2nPwII6HSATiqlQHkmnTOUhePgXQ5ETleIEPqesEQRI3rPfhirezuFbudzvhF1OcT5LJ7+hir9Def13ftjl8SGeaMB3Y75UXiMSJ6fyZM2Dii1oIJF5CtWOhwk1DCDpF4VOS7r2GSVlRSoecvDWjTWjl9pJXZ2W3J3zBG6gx0H/VERbCEFLgo9AaLYaT/+o8ySoZReNn9kBBMe+AzPpyRsKHRTO+Tj9wf2A21FdFRwfjB7qKO21XU1LlbsElnxqNeYqPv11HUU+87q0ZIf6CtWrTemCIXtpkcrJeYBVUBCHIKhiQfDbPwBZpj0tyKYPd2+WUJPLt7/xC7C3eiwWXa5gX0czri33qojuZFcp4/YWPYHOET0LKt1i40tFQ+d1wgalIcIxtyZj/hy4J7p6UXmSGhnX26Cw0irsZgc+IuwwGAgY6umel0Q++X/J4DFntKFYGsFEKysXtXta5Nug58Nk75cLHazopdrIDAOcZ2bV3O6E0gYCk4AYUQiS1M20=
   file:
     - "./target/gitlab-branch-source.hpi"
     - "./target/gitlab-branch-source.jar"
+  on:
+    tags: true
